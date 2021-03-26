@@ -1,0 +1,16 @@
+---
+# tasks file for myhaproxy
+- name: "install haproxy"
+  package:
+          name: haproxy
+          state: present
+- name: "Configure the haproxy.cfg file"
+  template:
+          src: haproxy.cfg.j2
+          dest: "/etc/haproxy/haproxy.cfg"
+  register: x
+- name: "Haproxy service start"
+  service:
+          name: haproxy
+          state: restarted
+  when: x.changed == true

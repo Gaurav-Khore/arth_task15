@@ -1,0 +1,6 @@
+- hosts: controlnode
+  roles:
+          - role: "myhaproxy"
+- hosts: targetnode
+  roles:
+          - role: "myapache"
